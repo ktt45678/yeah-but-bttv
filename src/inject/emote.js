@@ -81,7 +81,7 @@ function createEmote(emote, pepela) {
     emoteElement.alt = emote.code;
     if (pepela === "bttv") {
         emoteElement.src = "https://cdn.betterttv.net/emote/" + emote.id + "/1x";
-        emoteElement.srset = "https://cdn.betterttv.net/emote/" + emote.id + "/1x 1x, https://cdn.betterttv.net/emote/"  + emote.id + "/2x 2x, https://cdn.betterttv.net/emote/" + emote.id + "/3x 3x";
+        emoteElement.srset = "https://cdn.betterttv.net/emote/" + emote.id + "/1x 1x, https://cdn.betterttv.net/emote/" + emote.id + "/2x 2x, https://cdn.betterttv.net/emote/" + emote.id + "/3x 3x";
     } else if (pepela === "ffz") {
         emoteElement.src = "https://cdn.frankerfacez.com/emoticon/" + emote.id + "/1";
         emoteElement.srset = "https://cdn.frankerfacez.com/emoticon/" + emote.id + "/1 1x, https://cdn.frankerfacez.com/emoticon/" + emote.id + "/2 2x, https://cdn.frankerfacez.com/emoticon/" + emote.id + "/4 4x";
@@ -101,7 +101,7 @@ const replaceContents = (node) => {
     // try to replace if message match any emotes in
     // cachedBTTVEmotes, cachedFFZEmotes, cached7TVEmotes
     cachedBTTVEmotes.forEach((emote) => {
-        const regex = new RegExp(emote.code, "g");
+        const regex = new RegExp('(?<!<[^>]*)' + emote.code, "g");
         const replaced = textContent.replace(regex, createEmote(emote, "bttv"));
         if (replaced !== textContent) {
             node.innerHTML = replaced;
@@ -109,7 +109,7 @@ const replaceContents = (node) => {
     })
 
     cachedFFZEmotes.forEach((emote) => {
-        const regex = new RegExp(emote.code, "g");
+        const regex = new RegExp('(?<!<[^>]*)' + emote.code, "g");
         const replaced = textContent.replace(regex, createEmote(emote, "ffz"));
         if (replaced !== textContent) {
             node.innerHTML = replaced;
@@ -117,7 +117,7 @@ const replaceContents = (node) => {
     })
 
     cached7TVEmotes.forEach((emote) => {
-        const regex = new RegExp(emote.code, "g");
+        const regex = new RegExp('(?<!<[^>]*)' + emote.code, "g");
         const replaced = textContent.replace(regex, createEmote(emote, "7tv"));
         if (replaced !== textContent) {
             node.innerHTML = replaced;
