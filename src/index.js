@@ -5,7 +5,7 @@ const utils = require("./lib/utils");
 const youtube = require("./lib/youtube");
 
 const app = express();
-const PORT = 7776;
+const PORT = process.env.PORT || 7776;
 
 const EmoteScriptInjection = fs.readFileSync(__dirname + "/inject/emote.js").toString();
 
