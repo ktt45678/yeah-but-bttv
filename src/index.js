@@ -1,5 +1,6 @@
 const express = require("express");
 const fs = require("fs");
+require("dotenv");
 
 const utils = require("./lib/utils");
 const youtube = require("./lib/youtube");
